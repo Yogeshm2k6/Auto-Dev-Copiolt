@@ -1,0 +1,76 @@
+{
+    "name": "autodev-vscode",
+    "displayName": "AutoDev Copilot",
+    "description": "An AI coding assistant embedded inside VS Code",
+    "version": "0.0.10",
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "autodev-sidebar",
+                    "title": "AutoDev Copilot",
+                    "icon": "$(zap)"
+                }
+            ]
+        },
+        "views": {
+            "autodev-sidebar": [
+                {
+                    "type": "webview",
+                    "id": "autodev.sidebarView",
+                    "name": "Chat"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "autodev.ask",
+                "title": "AutoDev: Ask"
+            },
+            {
+                "command": "autodev.fix",
+                "title": "AutoDev: Fix All"
+            },
+            {
+                "command": "autodev.explain",
+                "title": "AutoDev: Explain"
+            },
+            {
+                "command": "autodev.run",
+                "title": "AutoDev: Run"
+            }
+        ],
+        "configuration": {
+            "title": "AutoDev Copilot",
+            "properties": {
+                "autodev.backendPort": {
+                    "type": "number",
+                    "default": 8001,
+                    "description": "The port number where the Python AutoDev backend is running."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.80.0",
+        "@types/node": "18.x",
+        "typescript": "^5.0.4"
+    }
+}

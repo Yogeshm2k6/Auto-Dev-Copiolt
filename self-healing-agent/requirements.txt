@@ -1,0 +1,7 @@
+langchain
+groq
+streamlit
+python-dotenv
+colorama
+fastapi
+uvicorn
